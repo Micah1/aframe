@@ -66,11 +66,11 @@ registerComponent('laser-controls', {
 
   config: {
     'daydream-controls': {
-      cursor: {downEvents: ['trackpaddown'], upEvents: ['trackpadup']}
+      cursor: {downEvents: ['thumbdownstart'], upEvents: ['thumbdownend']}
     },
 
     'gearvr-controls': {
-      cursor: {downEvents: ['trackpaddown'], upEvents: ['trackpadup']},
+      cursor: {downEvents: ['thumbdownstart'], upEvents: ['thumbdownend']},
       raycaster: {origin: {x: 0, y: 0.0005, z: 0}}
     },
 
