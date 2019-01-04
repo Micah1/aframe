@@ -63,7 +63,7 @@ registerComponent('laser-controls', {
       el.setAttribute('raycaster', 'showLine', false);
     }
   },
-
+// thumbdownstart for daydream and GEAR
   config: {
     'daydream-controls': {
       cursor: {downEvents: ['thumbdownstart'], upEvents: ['thumbdownend']}
