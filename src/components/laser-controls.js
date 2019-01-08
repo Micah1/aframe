@@ -4,8 +4,8 @@
   (factory());
 }(this, (function () { 'use strict';
 
-var registerComponent = require('../core/component').registerComponent;
-var utils = require('../utils/');
+var registerComponent
+var utils
 
 registerComponent('modified-laser-controls', {
   schema: {
