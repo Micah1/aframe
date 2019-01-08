@@ -69,7 +69,7 @@ registerComponent('laser-controls', {
     }
 
     function hideRay () {
-      el.setAttribute('raycaster', 'showLine', false);
+      el.setAttribute('raycaster', 'showLine', true);
     }
   },
 
