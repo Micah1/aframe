@@ -1,8 +1,8 @@
-(function (global, factory) {
+/*(function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (factory());
-}(this, (function () {
+}(this, (function () {*/
 
 var registerComponent
 var utils
@@ -99,4 +99,4 @@ AFRAME.registerComponent('daser-controls', {
 });
                       
                    // global factory
-                     })))
+                  //   })))
