@@ -1,17 +1,11 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (factory());
-}(this, (function () {
+var registerComponent = require('../core/component').registerComponent;
+var utils = require('../utils/');
 
-var registerComponent
-var utils
-
-AFRAME.registerComponent('daser-controls', {
-  dependencies: ['tracked-controls'],
-
+registerComponent('daser-controls', {
   schema: {
-    hand: {default: 'right'}
+    hand: {default: 'right'},
+    model: {default: true},
+    defaultModelColor: {type: 'color', default: 'grey'}
   },
 
   init: function () {
@@ -19,13 +13,20 @@ AFRAME.registerComponent('daser-controls', {
     var data = this.data;
     var el = this.el;
     var self = this;
+    var modelEnabled = this.data.model && !this.el.sceneEl.hasWebXR;
+    var controlsConfiguration = {hand: data.hand, model: modelEnabled};
 
     // Set all controller models.
-    el.setAttribute('daydream-controls', {hand: data.hand});
-    el.setAttribute('gearvr-controls', {hand: data.hand});
-    el.setAttribute('oculus-touch-controls', {hand: data.hand});
-    el.setAttribute('vive-controls', {hand: data.hand});
-    el.setAttribute('windows-motion-controls', {hand: data.hand});
+    el.setAttribute('daydream-controls', controlsConfiguration);
+    el.setAttribute('gearvr-controls', controlsConfiguration);
+    el.setAttribute('oculus-go-controls', controlsConfiguration);
+    el.setAttribute('oculus-touch-controls', controlsConfiguration);
+    el.setAttribute('vive-controls', controlsConfiguration);
+    el.setAttribute('vive-focus-controls', controlsConfiguration);
+    el.setAttribute('windows-motion-controls', controlsConfiguration);
+
+    // WebXR doesn't allow to discriminate between controllers, a default model is used.
+    if (this.data.model && this.el.sceneEl.hasWebXR) { this.initDefaultModel(); }
 
     // Wait for controller to connect, or have a valid pointing pose, before creating ray
     el.addEventListener('controllerconnected', createRay);
@@ -71,10 +72,10 @@ AFRAME.registerComponent('daser-controls', {
       el.setAttribute('raycaster', 'showLine', false);
     }
   },
-// thumbdownstart for daydream and GEAR
+
   config: {
     'daydream-controls': {
-      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']}
+      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']},
     },
 
     'gearvr-controls': {
@@ -82,21 +83,37 @@ AFRAME.registerComponent('daser-controls', {
       raycaster: {origin: {x: 0, y: 0.0005, z: 0}}
     },
 
+    'oculus-go-controls': {
+      cursor: {downEvents: ['triggerdown'], upEvents: ['triggerup']},
+      raycaster: {origin: {x: 0, y: 0.0005, z: 0}}
+    },
+
     'oculus-touch-controls': {
       cursor: {downEvents: ['triggerdown'], upEvents: ['triggerup']},
-      raycaster: {origin: {x: 0.001, y: 0, z: 0.065}, direction: {x: 0, y: -0.8, z: -1}}
+      raycaster: {origin: {x: 0, y: 0, z: 0}}
     },
 
     'vive-controls': {
       cursor: {downEvents: ['triggerdown'], upEvents: ['triggerup']}
     },
 
+    'vive-focus-controls': {
+      cursor: {downEvents: ['trackpaddown', 'triggerdown'], upEvents: ['trackpadup', 'triggerup']}
+    },
+
     'windows-motion-controls': {
       cursor: {downEvents: ['triggerdown'], upEvents: ['triggerup']},
       raycaster: {showLine: false}
     }
+  },
+
+  initDefaultModel: function () {
+    var modelEl = this.modelEl = document.createElement('a-entity');
+    modelEl.setAttribute('geometry', {
+      primitive: 'sphere',
+      radius: 0.03
+    });
+    modelEl.setAttribute('material', {color: this.data.color});
+    this.el.appendChild(modelEl);
   }
 });
-                      
-                   // global factory
-                     })))
