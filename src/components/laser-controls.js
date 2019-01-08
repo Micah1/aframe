@@ -1,7 +1,7 @@
 var registerComponent = require('../core/component').registerComponent;
 var utils = require('../utils/');
 
-registerComponent('daser-controls', {
+registerComponent('laser-controls', {
   schema: {
     hand: {default: 'right'},
     model: {default: true},
