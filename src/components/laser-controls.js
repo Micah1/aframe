@@ -72,11 +72,11 @@ registerComponent('modified-laser-controls', {
 // thumbdownstart for daydream and GEAR
   config: {
     'daydream-controls': {
-      cursor: {downEvents: ['thumbdownstart'], upEvents: ['thumbdownend']}
+      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']}
     },
 
     'gearvr-controls': {
-      cursor: {downEvents: ['thumbdownstart'], upEvents: ['thumbdownend']},
+      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']},
       raycaster: {origin: {x: 0, y: 0.0005, z: 0}}
     },
 
