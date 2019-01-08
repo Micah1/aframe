@@ -69,17 +69,17 @@ registerComponent('laser-controls', {
     }
 
     function hideRay () {
-      el.setAttribute('raycaster', 'showLine', true);
+      el.setAttribute('raycaster', 'showLine', false);
     }
   },
 
   config: {
     'daydream-controls': {
-      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']},
+      cursor: {downEvents: ['trackpaddown', 'triggerdown'], upEvents: ['trackpadup', 'triggerup']}
     },
 
     'gearvr-controls': {
-      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']},
+      cursor: {downEvents: ['triggerdown'], upEvents: ['triggerup']},
       raycaster: {origin: {x: 0, y: 0.0005, z: 0}}
     },
 
