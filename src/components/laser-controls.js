@@ -75,7 +75,7 @@ registerComponent('laser-controls', {
 
   config: {
     'daydream-controls': {
-      cursor: {downEvents: ['trackpaddown', 'triggerdown'], upEvents: ['trackpadup', 'triggerup']}
+      cursor: {downEvents: ['thumbupstart'], upEvents: ['thumbupend']}
     },
 
     'gearvr-controls': {
@@ -98,7 +98,7 @@ registerComponent('laser-controls', {
     },
 
     'vive-focus-controls': {
-      cursor: {downEvents: ['trackpaddown', 'triggerdown'], upEvents: ['trackpadup', 'triggerup']}
+      cursor: {downEvents: ['triggerdown'], upEvents: ['triggerup']}
     },
 
     'windows-motion-controls': {
