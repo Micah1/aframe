@@ -7,7 +7,7 @@
 var registerComponent
 var utils
 
-AFRAME.registerComponent('modified-laser-controls', {
+AFRAME.registerComponent('daser-controls', {
   schema: {
     hand: {default: 'right'}
   },
