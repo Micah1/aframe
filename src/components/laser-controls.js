@@ -8,6 +8,8 @@ var registerComponent
 var utils
 
 AFRAME.registerComponent('daser-controls', {
+  dependencies: ['tracked-controls'],
+
   schema: {
     hand: {default: 'right'}
   },
