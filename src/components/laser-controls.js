@@ -95,3 +95,6 @@ registerComponent('modified-laser-controls', {
     }
   }
 });
+                      
+                   // global factory
+                     })))
